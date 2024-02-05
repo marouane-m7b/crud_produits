@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             'Prix'=>'5780',
             'Qte'=>'10',
             'description'=>'SMART PHONE',
-            'image'=>'iphone.jpg',
+            'image'=>'iphone.png',
             'type_id'=>1
         ]);
         Produit::factory()->create([
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             'Prix'=>'450',
             'Qte'=>'5',
             'description'=>'Smart tv marque SONY',
-            'image'=>'photos/tvsmart.jpg',
+            'image'=>'photos/tvsmart.png',
             'type_id'=>1
         ]);
         Produit::factory()->create([
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
             'Prix'=>'5000',
             'Qte'=>'3',
             'description'=>'Smart tv marque lg',
-            'image'=>'photos/tvsmartlg.jpg',
+            'image'=>'photos/tvsmartlg.png',
             'type_id'=>1
         ]);
     }

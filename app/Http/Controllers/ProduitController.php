@@ -12,7 +12,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        return view('products', ['products' => Produit::all()]);
     }
 
     /**
