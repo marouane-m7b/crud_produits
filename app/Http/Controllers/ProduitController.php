@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produit;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProduitController extends Controller
@@ -20,7 +21,8 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $types = Type::all();
+        return view('create', compact('types'));
     }
 
     /**
@@ -28,8 +30,31 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        $produit = Produit::create($request->all());
-        return to_route('product.show', ['produit' => $produit->id]);
+        $rules = [
+            'RefPdt' => ['required', 'string', 'max:10', 'unique:produits,RefPdt'],
+            'libPdt' => ['required', 'string', 'max:255'],
+            'Prix' => ['required', 'string', 'max:255'],
+            'Qte' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'type_id' => ['required', 'string', 'max:255'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+        ];  
+        $request->validate($rules);
+        $produit = new Produit();
+        $produit->refPdt = "P00".$request->input('refPdt');
+        $produit->libPdt = $request->input('libPdt');
+        $produit->Prix = $request->input('Prix');
+        $produit->Qte = $request->input('Qte');
+        $produit->description = $request->input('description');
+        $produit->type_id = $request->input('type_id');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $filename);
+            $produit->image = $filename;
+        }
+        $produit->save();
+        return redirect()->route('product.index');
     }
 
     /**

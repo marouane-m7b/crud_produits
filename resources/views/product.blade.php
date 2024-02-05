@@ -4,7 +4,7 @@
     <!-- component -->
     <!-- item card -->
     <div class="md:flex shadow-lg  mx-6 md:mx-auto my-40 max-w-lg md:max-w-2xl h-64">
-        <img class="h-full w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6" src="/{{ $product->image }}"
+        <img class="h-full w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6" src="/images/{{ $product->image }}"
             alt="{{ $product->libPdt }}">
         <div class="relative w-full md:w-2/3 px-4 py-4 bg-white rounded-lg">
             <div class="flex items-center">

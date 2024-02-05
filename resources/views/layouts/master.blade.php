@@ -11,7 +11,7 @@
     <script src="{{ asset('fontawesome-free-6.5.1-web/js/all.min.js') }}"></script>
 </head>
 
-<body>
+<body class="h-screen bg-gray-100">
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
