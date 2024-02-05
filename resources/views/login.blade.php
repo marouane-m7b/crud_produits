@@ -5,14 +5,21 @@
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    <div class="color-red">
+      {{ $error }}
+    </div>
+    @endforeach
+    @endif
   </div>
-
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="#" method="POST">
+    <form class="space-y-6" action="{{ route('authenticate') }}" method="POST">
+      @csrf
       <div>
-        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+        <label for="login" class="block text-sm font-medium leading-6 text-gray-900">Login</label>
         <div class="mt-2">
-          <input id="username" name="username" type="username" autocomplete="username" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <input id="login" name="login" type="login" autocomplete="login" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
         </div>
       </div>
 
