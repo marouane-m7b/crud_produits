@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('RefPdt')->unique();
-            $table->string('LibPdt')->unique();
+            $table->string('libPdt');
             $table->string('Prix');
             $table->string('Qte');
             $table->string('description');
             $table->string('image');
-            $table->string('Type');
+            $table->string('type_id');
             $table->timestamps();
         });
     }
