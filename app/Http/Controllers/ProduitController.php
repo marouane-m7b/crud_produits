@@ -12,7 +12,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        return view('products', ['products' => Produit::all()]);
+        return view('products', ['products' => Produit::paginate(4)]);
     }
 
     /**
@@ -20,7 +20,7 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -28,7 +28,8 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produit = Produit::create($request->all());
+        return to_route('product.show', ['produit' => $produit->id]);
     }
 
     /**
@@ -36,7 +37,7 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+        return view('product', ['product' => $produit]);
     }
 
     /**
@@ -60,6 +61,7 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
-        //
+        $produit->delete();
+        return to_route('product.index');
     }
 }

@@ -16,8 +16,20 @@ class ProduitFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            //
-        ];
+        
+    static $refPdtNumber = 4;
+
+    $images = ['photos/tvsmart.png', 'photos/tvsmartlg.png', 'iphone.png'];
+
+    return [
+        'RefPdt' => 'P' . str_pad($refPdtNumber++, 3, '0', STR_PAD_LEFT),
+        'libPdt' => fake()->word(),
+        'Prix' => fake()->numberBetween(100, 10000),
+        'Qte' => fake()->numberBetween(1, 20),
+        'description' => fake()->sentence(),
+        'image' => fake()->randomElement($images),
+        'type_id' => fake()->numberBetween(1, 3)
+    ];
+
     }
 }

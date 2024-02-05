@@ -2,19 +2,19 @@
 
 @section('content')
     <!--
-              This example requires some changes to your config:
-              
-              ```
-              // tailwind.config.js
-              module.exports = {
-                // ...
-                plugins: [
-                  // ...
-                  require('@tailwindcss/aspect-ratio'),
-                ],
-              }
-              ```
-            -->
+                  This example requires some changes to your config:
+                  
+                  ```
+                  // tailwind.config.js
+                  module.exports = {
+                    // ...
+                    plugins: [
+                      // ...
+                      require('@tailwindcss/aspect-ratio'),
+                    ],
+                  }
+                  ```
+                -->
     <div class="bg-white">
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
@@ -40,20 +40,26 @@
                             <p class="text-sm font-medium text-gray-900">${{ $product->Prix }}</p>
                         </div>
                         <div class="mt-4 flex justify-around">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ route('product.show', $product->id) }}"
+                                class="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded z-10">
                                 <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
+                            </a>
+                            <form class="z-10" action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded z-10">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
-                <!-- More products... -->
+                <!-- More product.. -->
             </div>
         </div>
     </div>
+    <div class="flex justify-evenly w-full">
+        <div class="mb-10 z-10">{{ $products->links() }}</div>
+    </div>
+    <a href="{{ route('product.create') }}"><i class="fa-solid fa-circle-plus fixed bottom-10 right-10 text-5xl"></i></a>
 @endsection
